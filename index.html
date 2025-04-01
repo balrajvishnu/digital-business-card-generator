@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Business Card Generator</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Digital Business Card Generator</h1>
+        
+        <div class="main-content">
+            <div class="form-section">
+                <h2>Enter Your Details</h2>
+                <form id="businessCardForm">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="title">Job Title</label>
+                        <input type="text" id="title">
+                    </div>
+                    <div class="form-group">
+                        <label for="businessUnit">Business Unit</label>
+                        <input type="text" id="businessUnit" placeholder="Optional: e.g., Sales, Engineering, etc.">
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <textarea id="address"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="website">Website</label>
+                        <input type="url" id="website">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="companyLogo">Company Logo</label>
+                        <input type="file" id="companyLogo" accept="image/*">
+                        <small class="input-hint">Recommended: Square logo with transparent background</small>
+                    </div>
+                    <button type="submit">Generate Card</button>
+                </form>
+            </div>
+            
+            <div class="preview-section">
+                <h2>Preview</h2>
+                <div class="card-container">
+                    <div class="business-card" id="businessCard">
+                        <div class="card-content">
+                            <div class="card-header">
+                                <div class="card-main-info">
+                                    <h2 class="card-name" id="previewName">John Doe</h2>
+                                    <p class="card-title" id="previewTitle">Software Engineer</p>
+                                    <p class="card-business-unit" id="previewBusinessUnit">Engineering</p>
+                                </div>
+                                <div class="qr-code">
+                                    <div id="qrcode"></div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="card-details">
+                                    <p class="card-address" id="previewAddress">123 Business St, City, Country</p>
+                                    <p class="card-email" id="previewEmail">john@example.com</p>
+                                    <p class="card-phone" id="previewPhone">+1 234 567 890</p>
+                                </div>
+                                <div class="company-logo" id="previewLogo"></div>
+                            </div>
+                            <div class="card-footer">
+                                <p class="card-website" id="previewWebsite">www.example.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="button-group">
+                    <button id="downloadCard" class="download-btn">Download Card</button>
+                </div>
+                <div class="color-palette-section">
+                    <h3>Choose Card Style</h3>
+                    <div class="color-palettes">
+                        <div class="color-palette" data-gradient="135deg, #2c3e50, #3498db" style="background: linear-gradient(135deg, #2c3e50, #3498db)"></div>
+                        <div class="color-palette" data-gradient="135deg, #16a085, #2ecc71" style="background: linear-gradient(135deg, #16a085, #2ecc71)"></div>
+                        <div class="color-palette" data-gradient="135deg, #8e44ad, #c0392b" style="background: linear-gradient(135deg, #8e44ad, #c0392b)"></div>
+                        <div class="color-palette" data-gradient="135deg, #2980b9, #e74c3c" style="background: linear-gradient(135deg, #2980b9, #e74c3c)"></div>
+                        <div class="color-palette" data-gradient="135deg, #34495e, #f1c40f" style="background: linear-gradient(135deg, #34495e, #f1c40f)"></div>
+                        <div class="color-palette" data-gradient="135deg, #27ae60, #9b59b6" style="background: linear-gradient(135deg, #27ae60, #9b59b6)"></div>
+                        <div class="color-palette white-palette" data-gradient="135deg, #ffffff, #f8f9fa" style="background: linear-gradient(135deg, #ffffff, #f8f9fa); border: 1px solid #dee2e6;"></div>
+                        <div class="color-palette" data-gradient="135deg, #000000, #2c3e50" style="background: linear-gradient(135deg, #000000, #2c3e50)"></div>
+                    </div>
+                    <div class="custom-color-picker">
+                        <h3>Custom Colors</h3>
+                        <div class="color-inputs">
+                            <div class="color-input">
+                                <label>Start Color:</label>
+                                <input type="color" id="startColor" value="#2c3e50">
+                            </div>
+                            <div class="color-input">
+                                <label>End Color:</label>
+                                <input type="color" id="endColor" value="#3498db">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 
