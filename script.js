@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const endColorPicker = document.getElementById('endColor');
     const companyLogoInput = document.getElementById('companyLogo');
     const previewLogo = document.getElementById('previewLogo');
+    const phone = document.getElementById('phone');
+    const previewPhone = document.getElementById('previewPhone');
     
     // Initialize QR code with default options
     let qrcode = new QRCode(qrcodeElement, {
@@ -248,9 +250,8 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('previewEmail').textContent = 
                 document.getElementById('email').value.trim() || 'email@example.com';
             
-            document.getElementById('previewPhone').textContent = 
-                document.getElementById('phone').value.trim() || 'Phone Number';
-                
+            previewPhone.textContent = phone.value ? `Ph: ${phone.value}` : 'Ph: +1 234 567 890';
+            
             // Only show and update QR code if website is provided
             const qrCodeContainer = document.querySelector('.qr-code');
             if (website) {
@@ -293,4 +294,4 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize preview with placeholder data
     updatePreview();
-}); 
+});
