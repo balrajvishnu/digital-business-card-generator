@@ -160,7 +160,7 @@ button:hover {
 }
 
 .card-title {
-    font-size: 32px;
+    font-size: 40px;
     color: inherit;
     opacity: 0.9;
     margin-bottom: 8px;
@@ -195,7 +195,7 @@ button:hover {
 }
 
 .card-details p {
-    font-size: 32px;
+    font-size: 36px;
     color: inherit;
     opacity: 0.9;
     margin-bottom: 15px;
