@@ -116,9 +116,9 @@ button:hover {
 .business-card {
     width: 1050px;
     height: 600px;
-    padding: 35px;
+    padding: 56px;
     background: linear-gradient(135deg, #2c3e50, #3498db);
-    border-radius: 10px;
+    border-radius: 0;
     color: white;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     position: relative;
@@ -139,7 +139,7 @@ button:hover {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 80px;
+    margin-bottom: 40px;
     width: 100%;
 }
 
@@ -151,7 +151,7 @@ button:hover {
 .card-name {
     font-size: 56px;
     margin-bottom: 12px;
-    color: white;
+    color: inherit;
     font-weight: bold;
     text-shadow: none;
     -webkit-text-stroke: 0;
@@ -161,7 +161,8 @@ button:hover {
 
 .card-title {
     font-size: 32px;
-    color: rgba(255, 255, 255, 0.9);
+    color: inherit;
+    opacity: 0.9;
     margin-bottom: 8px;
     text-shadow: none;
     line-height: 1.2;
@@ -169,7 +170,8 @@ button:hover {
 
 .card-business-unit {
     font-size: 24px;
-    color: rgba(255, 255, 255, 0.8);
+    color: inherit;
+    opacity: 0.8;
     margin-bottom: 12px;
     font-style: italic;
     text-shadow: none;
@@ -181,21 +183,22 @@ button:hover {
     justify-content: space-between;
     align-items: flex-end;
     margin-bottom: 0;
-    padding-bottom: 25px;
+    padding-bottom: 20px;
     width: 100%;
 }
 
 .card-details {
     flex: 1;
-    margin-right: 50px;
+    margin-right: 40px;
     margin-bottom: 0;
-    padding-bottom: 15px;
+    padding-bottom: 0;
 }
 
 .card-details p {
     font-size: 32px;
-    color: rgba(255, 255, 255, 0.9);
-    margin-bottom: 18px;
+    color: inherit;
+    opacity: 0.9;
+    margin-bottom: 15px;
     line-height: 1.4;
     text-shadow: none;
 }
@@ -212,7 +215,7 @@ button:hover {
     align-items: center;
     justify-content: center;
     margin-top: 0;
-    margin-bottom: 15px;
+    margin-bottom: 0;
     align-self: flex-end;
 }
 
@@ -228,7 +231,7 @@ button:hover {
     height: 120px;
     background: white;
     padding: 8px;
-    border-radius: 8px;
+    border-radius: 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -236,7 +239,7 @@ button:hover {
 }
 
 .card-footer {
-    padding-top: 25px;
+    padding-top: 20px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     width: 100%;
     margin-top: 0;
@@ -244,7 +247,8 @@ button:hover {
 
 .card-website {
     font-size: 24px;
-    color: rgba(255, 255, 255, 0.9);
+    color: inherit;
+    opacity: 0.9;
     line-height: 1.4;
     text-shadow: none;
 }
@@ -468,4 +472,20 @@ button:hover {
     width: 100%;
     text-align: left;
     margin-bottom: 1.5rem;
-} 
+}
+
+/* Add styles for white background */
+.business-card[style*="ffffff"] {
+    color: #333;
+}
+
+.business-card[style*="ffffff"] .card-title,
+.business-card[style*="ffffff"] .card-business-unit,
+.business-card[style*="ffffff"] .card-details p,
+.business-card[style*="ffffff"] .card-website {
+    opacity: 1;
+}
+
+.business-card[style*="ffffff"] .card-footer {
+    border-top-color: rgba(0, 0, 0, 0.1);
+}
