@@ -116,7 +116,7 @@ button:hover {
 .business-card {
     width: 1050px;
     height: 600px;
-    padding: 56px;
+    padding: 86px 86px 96px 106px;
     background: linear-gradient(135deg, #2c3e50, #3498db);
     border-radius: 0;
     color: white;
@@ -145,7 +145,7 @@ button:hover {
 
 .card-main-info {
     flex: 1;
-    margin-right: 40px;
+    margin-right: 60px;
 }
 
 .card-name {
@@ -183,7 +183,7 @@ button:hover {
     justify-content: space-between;
     align-items: flex-end;
     margin-bottom: 0;
-    padding-bottom: 20px;
+    padding-bottom: 15px;
     width: 100%;
 }
 
@@ -198,7 +198,7 @@ button:hover {
     font-size: 36px;
     color: inherit;
     opacity: 0.9;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
     line-height: 1.4;
     text-shadow: none;
 }
@@ -216,6 +216,7 @@ button:hover {
     justify-content: center;
     margin-top: 0;
     margin-bottom: 0;
+    margin-right: 20px;
     align-self: flex-end;
 }
 
@@ -236,21 +237,25 @@ button:hover {
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    margin-right: 20px;
 }
 
 .card-footer {
-    padding-top: 20px;
+    padding-top: 15px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     width: 100%;
     margin-top: 0;
+    margin-bottom: 0;
 }
 
 .card-website {
     font-size: 24px;
     color: inherit;
     opacity: 0.9;
-    line-height: 1.4;
+    line-height: 1.2;
     text-shadow: none;
+    word-break: break-all;
+    max-width: 100%;
 }
 
 /* Remove any text decorations and outlines */
