@@ -437,7 +437,7 @@ button:hover {
 .button-group {
     width: 100%;
     max-width: 1050px;
-    margin: 1.5rem 0;
+    margin: 1.5rem 0 0.5rem 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -471,6 +471,15 @@ button:hover {
 
 .fedex-btn:hover {
     background-color: #311B92;
+}
+
+.disclaimer {
+    display: block;
+    text-align: right;
+    color: #666;
+    font-size: 0.85rem;
+    margin-bottom: 1.5rem;
+    font-style: italic;
 }
 
 /* Ensure proper spacing for all sections */
