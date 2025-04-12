@@ -1,75 +1,117 @@
-# Digital Business Card Generator
+## Digital Business Card Generator
 
-A modern, responsive web application that allows users to create and customize professional digital business cards with real-time preview.
-
-## Live Demo
-
-Access the live application here: [Digital Business Card Generator](https://balrajvishnu.github.io/digital-business-card-generator/)
+A web application that allows users to create and customize professional digital business cards with real-time preview and export functionality.
 
 ## Features
 
-- Real-time preview of business card as you type
-- Customizable design elements:
-  - Multiple color schemes and gradients
-  - Custom color picker
-  - Company logo upload
-  - QR code generation for website
-- Professional layout with:
-  - Name and job title
-  - Business unit
-  - Contact details (address, email, phone)
-  - Company logo
-  - Website with QR code
-- High-quality PNG download
-- Mobile responsive design
-- Clean and modern user interface
+### Real-time Preview
+- Instantly see how your business card looks as you make changes
+- Accurate representation of the final output
 
-## How to Use
+### Customizable Design
+- Choose from a selection of professional color schemes
+- Customize text content and styling
+- Adjust layout and spacing
 
-1. Visit [https://balrajvishnu.github.io/digital-business-card-generator/](https://balrajvishnu.github.io/digital-business-card-generator/)
-2. Fill in your details in the form on the left:
-   - Full Name (required)
-   - Job Title
-   - Business Unit (optional)
-   - Address
-   - Website (will generate QR code)
-   - Email
-   - Phone
-   - Company Logo (upload image)
-3. Customize the card design:
-   - Choose from predefined color schemes
-   - Or create your own using the custom color picker
-4. Preview your card in real-time on the right
-5. Click "Download Card" to save your business card as a high-quality PNG file
+### Professional Elements
+- Company logo placement
+- Contact information formatting
+- Social media links
+- QR code integration
 
-## Local Development
+### Export Options
+- Download as high-quality PNG
+- Print-ready format
+- FedEx Office integration for professional printing
 
-If you want to run this project locally:
+## Technical Specifications
 
-1. Clone the repository:
-```bash
-git clone https://github.com/balrajvishnu/digital-business-card-generator.git
-```
+### Print Specifications
+- Size: 3.5" x 2" (standard business card)
+- Resolution: 300 DPI
+- Color Mode: CMYK
+- Bleed Area: 0.125"
+- Safe Area: 0.125" from edges
 
-2. Navigate to the project directory:
-```bash
-cd digital-business-card-generator
-```
-
-3. Start a local server (you can use Python's built-in server):
-```bash
-python -m http.server 8000
-```
-
-4. Open your browser and visit:
-```
-http://localhost:8000
-```
-
-## Technologies Used
-
+### Web Technologies
 - HTML5
 - CSS3
-- JavaScript
-- QRCode.js for QR code generation
-- html2canvas for card download
+- JavaScript (ES6+)
+- Responsive Design
+- Cross-browser compatible
+
+## Getting Started
+
+1. Visit the website: [Digital Business Card Generator](https://balrajvishnu.github.io/digital-business-card-generator/)
+2. Start customizing your business card
+3. Preview changes in real-time
+4. Export or print when satisfied
+
+## Usage
+
+1. Enter your information in the input fields
+2. Upload your company logo
+3. Choose a color scheme
+4. Adjust layout if needed
+5. Preview the result
+6. Download or print
+
+## Customization
+
+### Available Options
+- Text content
+- Font styles
+- Color schemes
+- Layout adjustments
+- Logo placement
+- QR code inclusion
+
+### Color Schemes
+- Professional
+- Modern
+- Classic
+- Custom
+
+## Browser Support
+
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+- Opera (latest)
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
+
+## License
+
+This project is open source and available under the MIT License.
+
+```
+MIT License
+
+Copyright (c) 2024 Balraj Vishnu
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
