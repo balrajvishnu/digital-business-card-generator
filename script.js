@@ -144,22 +144,46 @@ document.addEventListener('DOMContentLoaded', function() {
             const originalCardStyle = card.style.cssText;
             const originalContainerStyle = cardContainer.style.cssText;
             
-            // Set exact dimensions for capture
-            cardContainer.style.width = '1050px';
-            cardContainer.style.height = '600px';
+            // Set dimensions with bleed area (adding 24px total - 12px on each side)
+            cardContainer.style.width = '1074px';  // 1050px + 24px
+            cardContainer.style.height = '624px';  // 600px + 24px
             cardContainer.style.padding = '0';
             cardContainer.style.margin = '0';
             cardContainer.style.overflow = 'hidden';
             
-            card.style.width = '1050px';
-            card.style.height = '600px';
+            // Add bleed area to the card itself
+            card.style.width = '1074px';
+            card.style.height = '624px';
             card.style.transform = 'none';
             card.style.margin = '0';
-            card.style.padding = '35px';
+            // Keep the content within safe area by adjusting padding
+            card.style.padding = '86px 86px 96px 106px';
+            
+            // Adjust QR code and logo positioning
+            const qrCode = card.querySelector('.qr-code');
+            if (qrCode) {
+                qrCode.style.marginRight = '20px';
+            }
+            
+            const logo = card.querySelector('.company-logo');
+            if (logo) {
+                logo.style.marginRight = '20px';
+            }
+
+            // Ensure footer stays within safe area
+            const cardBody = card.querySelector('.card-body');
+            if (cardBody) {
+                cardBody.style.paddingBottom = '15px';
+            }
+
+            const cardFooter = card.querySelector('.card-footer');
+            if (cardFooter) {
+                cardFooter.style.paddingTop = '15px';
+            }
             
             html2canvas(card, {
-                width: 1050,
-                height: 600,
+                width: 1074,
+                height: 624,
                 scale: 2,
                 useCORS: true,
                 backgroundColor: null,
@@ -168,18 +192,29 @@ document.addEventListener('DOMContentLoaded', function() {
                     const clonedCard = clonedDoc.getElementById('businessCard');
                     const clonedContainer = clonedCard.parentElement;
                     
-                    // Apply exact styles to cloned elements
-                    clonedContainer.style.width = '1050px';
-                    clonedContainer.style.height = '600px';
+                    // Apply exact styles to cloned elements with bleed
+                    clonedContainer.style.width = '1074px';
+                    clonedContainer.style.height = '624px';
                     clonedContainer.style.padding = '0';
                     clonedContainer.style.margin = '0';
                     clonedContainer.style.overflow = 'hidden';
                     
-                    clonedCard.style.width = '1050px';
-                    clonedCard.style.height = '600px';
+                    clonedCard.style.width = '1074px';
+                    clonedCard.style.height = '624px';
                     clonedCard.style.transform = 'none';
                     clonedCard.style.margin = '0';
-                    clonedCard.style.padding = '35px';
+                    clonedCard.style.padding = '86px 86px 96px 106px';
+                    
+                    // Ensure footer stays within safe area in cloned version
+                    const clonedCardBody = clonedCard.querySelector('.card-body');
+                    if (clonedCardBody) {
+                        clonedCardBody.style.paddingBottom = '15px';
+                    }
+
+                    const clonedCardFooter = clonedCard.querySelector('.card-footer');
+                    if (clonedCardFooter) {
+                        clonedCardFooter.style.paddingTop = '15px';
+                    }
                     
                     // Ensure text styles are preserved
                     const elements = clonedCard.getElementsByTagName('*');
@@ -235,8 +270,11 @@ document.addEventListener('DOMContentLoaded', function() {
             // Hide business unit element if empty
             document.getElementById('previewBusinessUnit').style.display = businessUnit ? 'block' : 'none';
             
-            document.getElementById('previewAddress').textContent = 
-                document.getElementById('address').value.trim() || 'Address';
+            const address = document.getElementById('address').value.trim();
+            const addressElement = document.getElementById('previewAddress');
+            addressElement.textContent = address;
+            // Hide address element if empty
+            addressElement.style.display = address ? 'block' : 'none';
             
             const websiteInput = document.getElementById('website');
             const website = websiteInput.value.trim();
