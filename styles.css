@@ -1,3 +1,4 @@
+/* Existing styles remain the same */
 * {
     margin: 0;
     padding: 0;
@@ -5,6 +6,31 @@
     font-family: 'Arial', sans-serif;
 }
 
+/* ... (all existing styles) ... */
+
+/* Add new footer styles */
+.site-footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 2rem;
+    border-top: 1px solid #eee;
+    color: #666;
+}
+
+.site-footer small {
+    font-size: 0.85rem;
+}
+
+.site-footer a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.site-footer a:hover {
+    text-decoration: underline;
+}
+
+/* All other existing styles remain unchanged */
 body {
     background-color: #f0f2f5;
     padding: 2rem;
