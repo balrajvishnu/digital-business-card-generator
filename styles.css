@@ -1,24 +1,25 @@
-/* Existing styles remain the same */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
-}
-
-/* ... (all existing styles) ... */
-
-/* Add new footer styles */
+/* Add footer styles at the beginning */
 .site-footer {
     text-align: center;
     padding: 20px;
     margin-top: 2rem;
     border-top: 1px solid #eee;
     color: #666;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
 }
 
 .site-footer small {
     font-size: 0.85rem;
+}
+
+.site-footer .copyright {
+    color: #888;
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+    width: 100%;
 }
 
 .site-footer a {
@@ -30,7 +31,13 @@
     text-decoration: underline;
 }
 
-/* All other existing styles remain unchanged */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
 body {
     background-color: #f0f2f5;
     padding: 2rem;
