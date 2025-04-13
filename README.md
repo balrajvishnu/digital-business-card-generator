@@ -42,10 +42,55 @@ A web application that allows users to create and customize professional digital
 
 ## Getting Started
 
+### Online Usage
 1. Visit the website: [Digital Business Card Generator](https://balrajvishnu.github.io/digital-business-card-generator/)
 2. Start customizing your business card
 3. Preview changes in real-time
 4. Export or print when satisfied
+
+### Local Development
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/balrajvishnu/digital-business-card-generator.git
+   cd digital-business-card-generator
+   ```
+
+2. Project Structure:
+   ```
+   digital-business-card-generator/
+   ├── index.html          # Main HTML file
+   ├── styles.css          # Stylesheet
+   ├── script.js           # JavaScript functionality
+   ├── README.md          # Documentation
+   └── privacy.html       # Privacy policy
+   ```
+
+3. Dependencies:
+   - No build tools or package manager required
+   - Uses CDN-hosted libraries:
+     - QR Code Generator (qrcodejs)
+     - HTML2Canvas for card export
+   
+4. Running Locally:
+   - Open `index.html` in a modern web browser
+   - For development, use a local server:
+     ```bash
+     # Using Python 3
+     python -m http.server 8000
+     
+     # Using Node.js
+     npx http-server
+     
+     # Using PHP
+     php -S localhost:8000
+     ```
+   - Access the site at `http://localhost:8000`
+
+5. Making Changes:
+   - Edit `styles.css` for styling changes
+   - Modify `script.js` for functionality updates
+   - Update `index.html` for structure changes
+   - Test thoroughly in different browsers
 
 ## Usage
 
