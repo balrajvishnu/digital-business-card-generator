@@ -99,8 +99,8 @@ function updateQRCode() {
     // Generate new QR code
     new QRCode(qrcodeElement, {
         text: vCardData,
-        width: 150,
-        height: 150,
+        width: 180,
+        height: 180,
         colorDark: '#000000',
         colorLight: '#ffffff',
         correctLevel: QRCode.CorrectLevel.H
@@ -166,8 +166,8 @@ function selectColorPalette(backgroundColor, textColor, accentColor) {
 function initializeQRCode() {
     qrcodeElement = document.getElementById('qrcode');
     qrcode = new QRCode(qrcodeElement, {
-        width: 150,
-        height: 150,
+        width: 180,
+        height: 180,
         colorDark: '#000000',
         colorLight: '#ffffff',
         correctLevel: QRCode.CorrectLevel.H
