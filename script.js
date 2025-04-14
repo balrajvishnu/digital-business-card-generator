@@ -1,335 +1,205 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('businessCardForm');
-    const inputs = form.querySelectorAll('input, textarea');
-    const downloadBtn = document.getElementById('downloadCard');
-    const qrcodeElement = document.getElementById('qrcode');
-    const businessCard = document.getElementById('businessCard');
-    const colorPalettes = document.querySelectorAll('.color-palette');
-    const startColorPicker = document.getElementById('startColor');
-    const endColorPicker = document.getElementById('endColor');
-    const companyLogoInput = document.getElementById('companyLogo');
-    const previewLogo = document.getElementById('previewLogo');
-    const phone = document.getElementById('phone');
-    const previewPhone = document.getElementById('previewPhone');
+// Function to initialize form fields with placeholder data
+function initializeFormWithPlaceholderData() {
+    document.getElementById('name').value = 'John Doe';
+    document.getElementById('title').value = 'Software Engineer';
+    document.getElementById('company').value = 'Tech Solutions Inc.';
+    document.getElementById('email').value = 'john.doe@example.com';
+    document.getElementById('phone').value = '+1 (555) 123-4567';
+    document.getElementById('website').value = 'www.example.com';
+    document.getElementById('address').value = '123 Business Street\nSuite 456\nTech City, TC 12345';
+    document.getElementById('background-color').value = '#ffffff';
+    document.getElementById('text-color').value = '#000000';
+    document.getElementById('accent-color').value = '#0066cc';
+    updatePreview();
+}
+
+// Function to update the preview with current form data
+function updatePreview() {
+    const name = document.getElementById('name').value;
+    const title = document.getElementById('title').value;
+    const company = document.getElementById('company').value;
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+    const website = document.getElementById('website').value;
+    const address = document.getElementById('address').value;
+    const backgroundColor = document.getElementById('background-color').value;
+    const textColor = document.getElementById('text-color').value;
+    const accentColor = document.getElementById('accent-color').value;
+
+    // Update the preview card with the form data
+    const previewCard = document.querySelector('.preview-card');
+    previewCard.style.backgroundColor = backgroundColor;
+    previewCard.style.color = textColor;
+
+    document.getElementById('preview-name').textContent = name;
+    document.getElementById('preview-title').textContent = title;
+    document.getElementById('preview-company').textContent = company;
     
-    // Initialize QR code with default options
-    let qrcode = new QRCode(qrcodeElement, {
-        width: 110,
-        height: 110,
+    const emailLink = document.getElementById('preview-email');
+    emailLink.href = `mailto:${email}`;
+    emailLink.textContent = email;
+    emailLink.style.color = accentColor;
+
+    const phoneLink = document.getElementById('preview-phone');
+    phoneLink.href = `tel:${phone}`;
+    phoneLink.textContent = phone;
+    phoneLink.style.color = accentColor;
+
+    const websiteLink = document.getElementById('preview-website');
+    websiteLink.href = website.startsWith('http') ? website : `https://${website}`;
+    websiteLink.textContent = website;
+    websiteLink.style.color = accentColor;
+
+    document.getElementById('preview-address').innerHTML = address.replace(/\n/g, '<br>');
+
+    // Update QR code with vCard data
+    updateQRCode();
+}
+
+// Function to generate vCard format string
+function generateVCard() {
+    const name = document.getElementById('name').value;
+    const title = document.getElementById('title').value;
+    const company = document.getElementById('company').value;
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+    const website = document.getElementById('website').value;
+    const address = document.getElementById('address').value;
+
+    // Split address into parts
+    const addressParts = address.split('\n');
+    const street = addressParts[0] || '';
+    const cityStateZip = addressParts[addressParts.length - 1] || '';
+
+    // Create vCard format string
+    const vCard = [
+        'BEGIN:VCARD',
+        'VERSION:3.0',
+        `FN:${name}`,
+        `TITLE:${title}`,
+        `ORG:${company}`,
+        `EMAIL:${email}`,
+        `TEL:${phone}`,
+        `URL:${website}`,
+        `ADR:;;${street};${cityStateZip};;;`,
+        'END:VCARD'
+    ].join('\n');
+
+    return vCard;
+}
+
+// Function to update QR code
+function updateQRCode() {
+    const vCardData = generateVCard();
+    const qrcodeElement = document.querySelector('.qr-code');
+    
+    // Clear previous QR code
+    qrcodeElement.innerHTML = '';
+    
+    // Generate new QR code
+    new QRCode(qrcodeElement, {
+        text: vCardData,
+        width: 150,
+        height: 150,
         colorDark: '#000000',
         colorLight: '#ffffff',
         correctLevel: QRCode.CorrectLevel.H
     });
+}
 
-    // Clear initial QR code
-    qrcodeElement.innerHTML = '';
+// Function to download the business card as PDF
+function downloadCard() {
+    const cardElement = document.querySelector('.preview-card');
+    const backgroundColor = document.getElementById('background-color').value;
+    
+    // Configure PDF options
+    const opt = {
+        margin: 0,
+        filename: 'business-card.pdf',
+        image: { type: 'jpeg', quality: 1 },
+        html2canvas: { 
+            scale: 2,
+            backgroundColor: backgroundColor
+        },
+        jsPDF: { 
+            unit: 'in',
+            format: [3.5, 2],
+            orientation: 'landscape'
+        }
+    };
+
+    // Generate PDF
+    html2pdf().set(opt).from(cardElement).save();
+}
+
+// Function to handle FedEx printing
+function printAtFedex() {
+    // Show disclaimer modal
+    const modal = document.getElementById('disclaimerModal');
+    modal.style.display = 'block';
+}
+
+// Function to close the disclaimer modal
+function closeModal() {
+    const modal = document.getElementById('disclaimerModal');
+    modal.style.display = 'none';
+}
+
+// Function to proceed to FedEx website
+function proceedToFedex() {
+    // Close the modal
+    closeModal();
+    
+    // Open FedEx website in a new tab
+    window.open('https://www.fedex.com/en-us/printing.html', '_blank');
+}
+
+// Function to handle color palette selection
+function selectColorPalette(backgroundColor, textColor, accentColor) {
+    document.getElementById('background-color').value = backgroundColor;
+    document.getElementById('text-color').value = textColor;
+    document.getElementById('accent-color').value = accentColor;
+    updatePreview();
+}
+
+// Function to initialize QR code
+function initializeQRCode() {
+    qrcodeElement = document.getElementById('qrcode');
+    qrcode = new QRCode(qrcodeElement, {
+        width: 150,
+        height: 150,
+        colorDark: '#000000',
+        colorLight: '#ffffff',
+        correctLevel: QRCode.CorrectLevel.H
+    });
     document.querySelector('.qr-code').style.display = 'none';
+}
+
+// Initialize preview with placeholder data
+document.addEventListener('DOMContentLoaded', function() {
+    initializeFormWithPlaceholderData();
     
-    // Handle logo upload
-    companyLogoInput.addEventListener('change', function(e) {
-        const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const img = new Image();
-                img.onload = function() {
-                    // Clear previous logo
-                    previewLogo.innerHTML = '';
-                    // Add new logo with proper styling
-                    img.style.maxWidth = '100%';
-                    img.style.maxHeight = '100%';
-                    img.style.objectFit = 'contain';
-                    previewLogo.appendChild(img);
-                };
-                img.src = e.target.result;
-            };
-            reader.readAsDataURL(file);
-        }
+    // Add event listeners to form inputs
+    const formInputs = document.querySelectorAll('input, textarea');
+    formInputs.forEach(input => {
+        input.addEventListener('input', updatePreview);
     });
-    
-    // Update preview in real-time as user types
-    inputs.forEach(input => {
-        if (input.id !== 'companyLogo') { // Exclude file input from this listener
-            input.addEventListener('input', updatePreview);
-        }
-    });
-    
-    // Handle color palette selection
-    colorPalettes.forEach(palette => {
-        palette.addEventListener('click', () => {
-            // Remove active class from all palettes
-            colorPalettes.forEach(p => p.classList.remove('active'));
-            // Add active class to selected palette
-            palette.classList.add('active');
-            // Update card background
-            const gradient = palette.getAttribute('data-gradient');
-            businessCard.style.background = `linear-gradient(${gradient})`;
-            
-            // If white palette is selected, update text colors
-            if (palette.classList.contains('white-palette')) {
-                businessCard.style.color = '#333';
-                document.querySelector('.card-name').style.color = '#333';
-                document.querySelector('.card-title').style.color = 'rgba(0, 0, 0, 0.9)';
-                document.querySelector('.card-business-unit').style.color = 'rgba(0, 0, 0, 0.8)';
-                document.querySelector('.card-details').style.color = 'rgba(0, 0, 0, 0.8)';
-            } else {
-                businessCard.style.color = 'white';
-                document.querySelector('.card-name').style.color = 'white';
-                document.querySelector('.card-title').style.color = 'rgba(255, 255, 255, 0.9)';
-                document.querySelector('.card-business-unit').style.color = 'rgba(255, 255, 255, 0.8)';
-                document.querySelector('.card-details').style.color = 'rgba(255, 255, 255, 0.8)';
-            }
+
+    // Initialize color palette buttons
+    document.querySelectorAll('.color-palette').forEach(button => {
+        button.addEventListener('click', function() {
+            const backgroundColor = this.getAttribute('data-background');
+            const textColor = this.getAttribute('data-text');
+            const accentColor = this.getAttribute('data-accent');
+            selectColorPalette(backgroundColor, textColor, accentColor);
         });
     });
-
-    // Handle custom color picker changes
-    function updateCustomGradient() {
-        const startColor = startColorPicker.value;
-        const endColor = endColorPicker.value;
-        businessCard.style.background = `linear-gradient(135deg, ${startColor}, ${endColor})`;
-        
-        // Remove active class from all palettes
-        colorPalettes.forEach(p => p.classList.remove('active'));
-        
-        // Update text color based on start color brightness
-        const brightness = getBrightness(startColor);
-        if (brightness > 128) {
-            businessCard.style.color = '#333';
-            document.querySelector('.card-name').style.color = '#333';
-            document.querySelector('.card-title').style.color = 'rgba(0, 0, 0, 0.9)';
-            document.querySelector('.card-business-unit').style.color = 'rgba(0, 0, 0, 0.8)';
-            document.querySelector('.card-details').style.color = 'rgba(0, 0, 0, 0.8)';
-        } else {
-            businessCard.style.color = 'white';
-            document.querySelector('.card-name').style.color = 'white';
-            document.querySelector('.card-title').style.color = 'rgba(255, 255, 255, 0.9)';
-            document.querySelector('.card-business-unit').style.color = 'rgba(255, 255, 255, 0.8)';
-            document.querySelector('.card-details').style.color = 'rgba(255, 255, 255, 0.8)';
-        }
-    }
-
-    // Calculate color brightness
-    function getBrightness(color) {
-        const hex = color.replace('#', '');
-        const r = parseInt(hex.substr(0, 2), 16);
-        const g = parseInt(hex.substr(2, 2), 16);
-        const b = parseInt(hex.substr(4, 2), 16);
-        return (r * 299 + g * 587 + b * 114) / 1000;
-    }
-
-    startColorPicker.addEventListener('input', updateCustomGradient);
-    endColorPicker.addEventListener('input', updateCustomGradient);
-
-    // Set initial active palette
-    colorPalettes[0].classList.add('active');
-    
-    // Handle form submission
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const nameField = document.getElementById('name');
-        if (nameField.value.trim()) {
-            updatePreview();
-            downloadBtn.scrollIntoView({ behavior: 'smooth' });
-        }
-    });
-    
-    // Handle download button click
-    downloadBtn.addEventListener('click', function() {
-        const nameField = document.getElementById('name');
-        if (nameField.value.trim()) {
-            const card = document.getElementById('businessCard');
-            const cardContainer = card.parentElement;
-            
-            // Store original styles
-            const originalCardStyle = card.style.cssText;
-            const originalContainerStyle = cardContainer.style.cssText;
-            
-            // Set dimensions with bleed area (adding 24px total - 12px on each side)
-            cardContainer.style.width = '1074px';  // 1050px + 24px
-            cardContainer.style.height = '624px';  // 600px + 24px
-            cardContainer.style.padding = '0';
-            cardContainer.style.margin = '0';
-            cardContainer.style.overflow = 'hidden';
-            
-            // Add bleed area to the card itself
-            card.style.width = '1074px';
-            card.style.height = '624px';
-            card.style.transform = 'none';
-            card.style.margin = '0';
-            // Keep the content within safe area by adjusting padding
-            card.style.padding = '86px 86px 96px 106px';
-            
-            // Adjust QR code and logo positioning
-            const qrCode = card.querySelector('.qr-code');
-            if (qrCode) {
-                qrCode.style.marginRight = '20px';
-            }
-            
-            const logo = card.querySelector('.company-logo');
-            if (logo) {
-                logo.style.marginRight = '20px';
-            }
-
-            // Ensure footer stays within safe area
-            const cardBody = card.querySelector('.card-body');
-            if (cardBody) {
-                cardBody.style.paddingBottom = '15px';
-            }
-
-            const cardFooter = card.querySelector('.card-footer');
-            if (cardFooter) {
-                cardFooter.style.paddingTop = '15px';
-            }
-            
-            html2canvas(card, {
-                width: 1074,
-                height: 624,
-                scale: 2,
-                useCORS: true,
-                backgroundColor: null,
-                logging: false,
-                onclone: function(clonedDoc) {
-                    const clonedCard = clonedDoc.getElementById('businessCard');
-                    const clonedContainer = clonedCard.parentElement;
-                    
-                    // Apply exact styles to cloned elements with bleed
-                    clonedContainer.style.width = '1074px';
-                    clonedContainer.style.height = '624px';
-                    clonedContainer.style.padding = '0';
-                    clonedContainer.style.margin = '0';
-                    clonedContainer.style.overflow = 'hidden';
-                    
-                    clonedCard.style.width = '1074px';
-                    clonedCard.style.height = '624px';
-                    clonedCard.style.transform = 'none';
-                    clonedCard.style.margin = '0';
-                    clonedCard.style.padding = '86px 86px 96px 106px';
-                    
-                    // Ensure footer stays within safe area in cloned version
-                    const clonedCardBody = clonedCard.querySelector('.card-body');
-                    if (clonedCardBody) {
-                        clonedCardBody.style.paddingBottom = '15px';
-                    }
-
-                    const clonedCardFooter = clonedCard.querySelector('.card-footer');
-                    if (clonedCardFooter) {
-                        clonedCardFooter.style.paddingTop = '15px';
-                    }
-                    
-                    // Ensure text styles are preserved
-                    const elements = clonedCard.getElementsByTagName('*');
-                    for (let el of elements) {
-                        el.style.textShadow = 'none';
-                        el.style.webkitTextStroke = '0';
-                        el.style.textStroke = '0';
-                        el.style.textDecoration = 'none';
-                        el.style.webkitFontSmoothing = 'antialiased';
-                        el.style.mozOsxFontSmoothing = 'grayscale';
-                    }
-                    
-                    // Ensure QR code is rendered properly
-                    const clonedQR = clonedDoc.getElementById('qrcode');
-                    if (clonedQR && website) {
-                        clonedQR.innerHTML = '';
-                        new QRCode(clonedQR, {
-                            width: 100,
-                            height: 100,
-                            colorDark: '#000000',
-                            colorLight: '#ffffff',
-                            correctLevel: QRCode.CorrectLevel.H
-                        }).makeCode(website);
-                    }
-                }
-            }).then(canvas => {
-                // Restore original styles
-                card.style.cssText = originalCardStyle;
-                cardContainer.style.cssText = originalContainerStyle;
-                
-                // Create download link with high quality
-                const link = document.createElement('a');
-                link.download = `${nameField.value.trim()}-business-card.png`;
-                link.href = canvas.toDataURL('image/png', 1.0);
-                link.click();
-            });
-        }
-    });
-    
-    function updatePreview() {
-        try {
-            const name = document.getElementById('name').value.trim();
-            if (!name) return; // Don't update if name is empty
-
-            // Update each field in the preview
-            document.getElementById('previewName').textContent = name;
-            
-            document.getElementById('previewTitle').textContent = 
-                document.getElementById('title').value.trim() || 'Position';
-            
-            const businessUnit = document.getElementById('businessUnit').value.trim();
-            document.getElementById('previewBusinessUnit').textContent = businessUnit;
-            // Hide business unit element if empty
-            document.getElementById('previewBusinessUnit').style.display = businessUnit ? 'block' : 'none';
-            
-            const address = document.getElementById('address').value.trim();
-            const addressElement = document.getElementById('previewAddress');
-            addressElement.textContent = address;
-            // Hide address element if empty
-            addressElement.style.display = address ? 'block' : 'none';
-            
-            const websiteInput = document.getElementById('website');
-            const website = websiteInput.value.trim();
-            const websiteDisplay = website || 'www.example.com';
-            const websiteElement = document.getElementById('previewWebsite');
-            websiteElement.textContent = websiteDisplay;
-            websiteElement.style.display = 'block';
-            websiteElement.style.visibility = 'visible';
-            document.querySelector('.card-footer').style.display = 'block';
-            
-            document.getElementById('previewEmail').textContent = 
-                document.getElementById('email').value.trim() || 'email@example.com';
-            
-            previewPhone.textContent = phone.value ? `Ph: ${phone.value}` : 'Ph: +1 234 567 890';
-            
-            // Only show and update QR code if website is provided
-            const qrCodeContainer = document.querySelector('.qr-code');
-            if (website) {
-                qrCodeContainer.style.display = 'flex';
-                updateQRCode(website);
-            } else {
-                qrCodeContainer.style.display = 'none';
-                qrcodeElement.innerHTML = '';
-            }
-        } catch (error) {
-            console.error('Error updating preview:', error);
-        }
-    }
-    
-    function updateQRCode(website) {
-        try {
-            if (!website) {
-                qrcodeElement.innerHTML = '';
-                document.querySelector('.qr-code').style.display = 'none';
-                return;
-            }
-            // Clear previous QR code
-            qrcodeElement.innerHTML = '';
-            // Generate new QR code
-            qrcode = new QRCode(qrcodeElement, {
-                width: 110,
-                height: 110,
-                colorDark: '#000000',
-                colorLight: '#ffffff',
-                correctLevel: QRCode.CorrectLevel.H
-            });
-            qrcode.makeCode(website);
-            document.querySelector('.qr-code').style.display = 'flex';
-        } catch (error) {
-            console.error('Error generating QR code:', error);
-            qrcodeElement.innerHTML = '';
-            document.querySelector('.qr-code').style.display = 'none';
-        }
-    }
-    
-    // Initialize preview with placeholder data
-    updatePreview();
 });
+
+// Close modal when clicking outside
+window.onclick = function(event) {
+    const modal = document.getElementById('disclaimerModal');
+    if (event.target == modal) {
+        modal.style.display = 'none';
+    }
+}
