@@ -1,3 +1,36 @@
+/* Add footer styles at the beginning */
+.site-footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 2rem;
+    border-top: 1px solid #eee;
+    color: #666;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.site-footer small {
+    font-size: 0.85rem;
+}
+
+.site-footer .copyright {
+    color: #888;
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+    width: 100%;
+}
+
+.site-footer a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.site-footer a:hover {
+    text-decoration: underline;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -116,9 +149,9 @@ button:hover {
 .business-card {
     width: 1050px;
     height: 600px;
-    padding: 35px;
+    padding: 86px 86px 96px 106px;
     background: linear-gradient(135deg, #2c3e50, #3498db);
-    border-radius: 10px;
+    border-radius: 0;
     color: white;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     position: relative;
@@ -139,19 +172,19 @@ button:hover {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 80px;
+    margin-bottom: 40px;
     width: 100%;
 }
 
 .card-main-info {
     flex: 1;
-    margin-right: 40px;
+    margin-right: 60px;
 }
 
 .card-name {
     font-size: 56px;
     margin-bottom: 12px;
-    color: white;
+    color: inherit;
     font-weight: bold;
     text-shadow: none;
     -webkit-text-stroke: 0;
@@ -160,8 +193,9 @@ button:hover {
 }
 
 .card-title {
-    font-size: 32px;
-    color: rgba(255, 255, 255, 0.9);
+    font-size: 40px;
+    color: inherit;
+    opacity: 0.9;
     margin-bottom: 8px;
     text-shadow: none;
     line-height: 1.2;
@@ -169,7 +203,8 @@ button:hover {
 
 .card-business-unit {
     font-size: 24px;
-    color: rgba(255, 255, 255, 0.8);
+    color: inherit;
+    opacity: 0.8;
     margin-bottom: 12px;
     font-style: italic;
     text-shadow: none;
@@ -181,21 +216,22 @@ button:hover {
     justify-content: space-between;
     align-items: flex-end;
     margin-bottom: 0;
-    padding-bottom: 25px;
+    padding-bottom: 15px;
     width: 100%;
 }
 
 .card-details {
     flex: 1;
-    margin-right: 50px;
+    margin-right: 40px;
     margin-bottom: 0;
-    padding-bottom: 15px;
+    padding-bottom: 0;
 }
 
 .card-details p {
-    font-size: 32px;
-    color: rgba(255, 255, 255, 0.9);
-    margin-bottom: 18px;
+    font-size: 36px;
+    color: inherit;
+    opacity: 0.9;
+    margin-bottom: 12px;
     line-height: 1.4;
     text-shadow: none;
 }
@@ -212,7 +248,8 @@ button:hover {
     align-items: center;
     justify-content: center;
     margin-top: 0;
-    margin-bottom: 15px;
+    margin-bottom: 0;
+    margin-right: 20px;
     align-self: flex-end;
 }
 
@@ -227,26 +264,33 @@ button:hover {
     width: 120px;
     height: 120px;
     background: white;
-    padding: 8px;
-    border-radius: 8px;
+    padding: 4px;
+    border-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    margin-right: 25px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    border: 1px solid rgba(0,0,0,0.1);
 }
 
 .card-footer {
-    padding-top: 25px;
+    padding-top: 15px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     width: 100%;
     margin-top: 0;
+    margin-bottom: 0;
 }
 
 .card-website {
     font-size: 24px;
-    color: rgba(255, 255, 255, 0.9);
-    line-height: 1.4;
+    color: inherit;
+    opacity: 0.9;
+    line-height: 1.2;
     text-shadow: none;
+    word-break: break-all;
+    max-width: 100%;
 }
 
 /* Remove any text decorations and outlines */
@@ -262,7 +306,7 @@ button:hover {
     .container {
         padding: 0;
     }
-    
+
     .main-content {
         padding: 1rem;
         justify-content: flex-start;
@@ -412,8 +456,8 @@ button:hover {
     }
 
     .qr-code {
-        width: 100px;
-        height: 100px;
+        width: 120px;
+        height: 120px;
         align-self: flex-end;
     }
 
@@ -433,15 +477,49 @@ button:hover {
 .button-group {
     width: 100%;
     max-width: 1050px;
-    margin: 1.5rem 0;
-    text-align: center;
+    margin: 1.5rem 0 0.5rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .download-btn {
-    width: auto;
-    min-width: 200px;
+    width: 200px;
     padding: 0.75rem 2rem;
     font-size: 1.1rem;
+    margin-top: 0;
+    height: 45px;
+    line-height: normal;
+}
+
+.fedex-btn {
+    background-color: #4A148C;
+    color: white;
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    width: 200px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+    height: 45px;
+}
+
+.fedex-btn:hover {
+    background-color: #311B92;
+}
+
+.disclaimer {
+    display: block;
+    text-align: right;
+    color: #666;
+    font-size: 0.85rem;
+    margin-bottom: 1.5rem;
+    font-style: italic;
 }
 
 /* Ensure proper spacing for all sections */
@@ -468,4 +546,20 @@ button:hover {
     width: 100%;
     text-align: left;
     margin-bottom: 1.5rem;
+}
+
+/* Add styles for white background */
+.business-card[style*="ffffff"] {
+    color: #333;
+}
+
+.business-card[style*="ffffff"] .card-title,
+.business-card[style*="ffffff"] .card-business-unit,
+.business-card[style*="ffffff"] .card-details p,
+.business-card[style*="ffffff"] .card-website {
+    opacity: 1;
+}
+
+.business-card[style*="ffffff"] .card-footer {
+    border-top-color: rgba(0, 0, 0, 0.1);
 } 

@@ -4,6 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Digital Business Card Generator</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VQMEHDVX4T"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-VQMEHDVX4T', {
+            'anonymize_ip': true
+        });
+    </script>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
@@ -71,7 +82,7 @@
                                 <div class="card-details">
                                     <p class="card-address" id="previewAddress">123 Business St, City, Country</p>
                                     <p class="card-email" id="previewEmail">john@example.com</p>
-                                    <p class="card-phone" id="previewPhone">+1 234 567 890</p>
+                                    <p class="card-phone" id="previewPhone">Ph: +1 234 567 890</p>
                                 </div>
                                 <div class="company-logo" id="previewLogo"></div>
                             </div>
@@ -83,7 +94,9 @@
                 </div>
                 <div class="button-group">
                     <button id="downloadCard" class="download-btn">Download Card</button>
+                    <a href="https://www.office.fedex.com/default/business-cards-quick.html" target="_blank" class="fedex-btn">Print-Fedex</a>
                 </div>
+                <small class="disclaimer">FedEx is a third-party service. We are not affiliated with FedEx.</small>
                 <div class="color-palette-section">
                     <h3>Choose Card Style</h3>
                     <div class="color-palettes">
@@ -112,6 +125,15 @@
                 </div>
             </div>
         </div>
+        <footer class="site-footer">
+            <small>
+                This website uses Google Analytics to gather anonymous usage statistics. No personal data is collected or stored. 
+                <a href="privacy.html">Learn more</a>.
+            </small>
+            <small class="copyright">
+                © 2025 Vishnu Balraj · <a href="https://github.com/balrajvishnu/digital-business-card-generator/blob/main/README.md#license">MIT License</a>
+            </small>
+        </footer>
     </div>
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <script src="script.js"></script>
